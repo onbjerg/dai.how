@@ -1,0 +1,2266 @@
+{
+  "contractName": "DaiMaker",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "weth",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "maker",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "daiAmount",
+          "type": "uint256"
+        },
+        {
+          "name": "cdpOwner",
+          "type": "address"
+        },
+        {
+          "name": "daiOwner",
+          "type": "address"
+        }
+      ],
+      "name": "makeDai",
+      "outputs": [
+        {
+          "name": "cdpId",
+          "type": "bytes32"
+        }
+      ],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "peth",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dai",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_maker",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "daiOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "cdpOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "ethAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "daiAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "MakeDai",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x6060604052341561000f57600080fd5b604051602080610f6383398101604052808051906020019091905050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16637bd2bea76000604051602001526040518163ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401602060405180830381600087803b15156100f857600080fd5b6102c65a03f1151561010957600080fd5b50505060405180519050600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16630f8a771e6000604051602001526040518163ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401602060405180830381600087803b15156101e057600080fd5b6102c65a03f115156101f157600080fd5b50505060405180519050600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16639166cba46000604051602001526040518163ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401602060405180830381600087803b15156102c857600080fd5b6102c65a03f115156102d957600080fd5b50505060405180519050600360006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050610c30806103336000396000f30060606040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680633fc8cef31461007257806350655d8c146100c75780635e5d926c1461011c5780637d211c751461018e578063f4b9fa75146101e3575b600080fd5b341561007d57600080fd5b610085610238565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34156100d257600080fd5b6100da61025e565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610170600480803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610283565b60405180826000191660001916815260200191505060405180910390f35b341561019957600080fd5b6101a1610bb8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34156101ee57600080fd5b6101f6610bde565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600080600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663d0e30db0346040518263ffffffff167c01000000000000000000000000000000000000000000000000000000000281526004016000604051808303818588803b151561030b57600080fd5b6125ee5a03f1151561031c57600080fd5b50505050600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663095ea7b36000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16346000604051602001526040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b151561040e57600080fd5b6102c65a03f1151561041f57600080fd5b50505060405180519050506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663049878f36000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663e47e7e66346000604051602001526040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050602060405180830381600087803b15156104ff57600080fd5b6102c65a03f1151561051057600080fd5b505050604051805190506040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050600060405180830381600087803b151561056b57600080fd5b6102c65a03f1151561057c57600080fd5b505050600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166370a08231306000604051602001526040518263ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050602060405180830381600087803b151561064457600080fd5b6102c65a03f1151561065557600080fd5b505050604051805190509050600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663095ea7b36000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16836000604051602001526040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b151561074f57600080fd5b6102c65a03f1151561076057600080fd5b50505060405180519050506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663fcfff16f6000604051602001526040518163ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401602060405180830381600087803b15156107f857600080fd5b6102c65a03f1151561080957600080fd5b5050506040518051905091506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663b3b77a5183836040518363ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180836000191660001916815260200182815260200192505050600060405180830381600087803b15156108b457600080fd5b6102c65a03f115156108c557600080fd5b5050506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663440f19ba83876040518363ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180836000191660001916815260200182815260200192505050600060405180830381600087803b151561096757600080fd5b6102c65a03f1151561097857600080fd5b505050600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb84876000604051602001526040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b1515610a4857600080fd5b6102c65a03f11515610a5957600080fd5b50505060405180519050506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663baa8529c83866040518363ffffffff167c01000000000000000000000000000000000000000000000000000000000281526004018083600019166000191681526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200192505050600060405180830381600087803b1515610b2f57600080fd5b6102c65a03f11515610b4057600080fd5b5050508373ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff167f980ee29f2182ba59418ca10e95f196c07a58ba40ed915a6584f582a4aaab5fbc3488604051808381526020018281526020019250505060405180910390a3509392505050565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a7230582010a5bc7ce74655ca4ccf9aa42b3d8c7fb6c739ddfbe58ab5ec0342818a7fdd420029",
+  "deployedBytecode": "0x60606040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680633fc8cef31461007257806350655d8c146100c75780635e5d926c1461011c5780637d211c751461018e578063f4b9fa75146101e3575b600080fd5b341561007d57600080fd5b610085610238565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34156100d257600080fd5b6100da61025e565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610170600480803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610283565b60405180826000191660001916815260200191505060405180910390f35b341561019957600080fd5b6101a1610bb8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34156101ee57600080fd5b6101f6610bde565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600080600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663d0e30db0346040518263ffffffff167c01000000000000000000000000000000000000000000000000000000000281526004016000604051808303818588803b151561030b57600080fd5b6125ee5a03f1151561031c57600080fd5b50505050600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663095ea7b36000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16346000604051602001526040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b151561040e57600080fd5b6102c65a03f1151561041f57600080fd5b50505060405180519050506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663049878f36000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663e47e7e66346000604051602001526040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050602060405180830381600087803b15156104ff57600080fd5b6102c65a03f1151561051057600080fd5b505050604051805190506040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050600060405180830381600087803b151561056b57600080fd5b6102c65a03f1151561057c57600080fd5b505050600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166370a08231306000604051602001526040518263ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050602060405180830381600087803b151561064457600080fd5b6102c65a03f1151561065557600080fd5b505050604051805190509050600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663095ea7b36000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16836000604051602001526040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b151561074f57600080fd5b6102c65a03f1151561076057600080fd5b50505060405180519050506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663fcfff16f6000604051602001526040518163ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401602060405180830381600087803b15156107f857600080fd5b6102c65a03f1151561080957600080fd5b5050506040518051905091506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663b3b77a5183836040518363ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180836000191660001916815260200182815260200192505050600060405180830381600087803b15156108b457600080fd5b6102c65a03f115156108c557600080fd5b5050506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663440f19ba83876040518363ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180836000191660001916815260200182815260200192505050600060405180830381600087803b151561096757600080fd5b6102c65a03f1151561097857600080fd5b505050600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb84876000604051602001526040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b1515610a4857600080fd5b6102c65a03f11515610a5957600080fd5b50505060405180519050506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663baa8529c83866040518363ffffffff167c01000000000000000000000000000000000000000000000000000000000281526004018083600019166000191681526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200192505050600060405180830381600087803b1515610b2f57600080fd5b6102c65a03f11515610b4057600080fd5b5050508373ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff167f980ee29f2182ba59418ca10e95f196c07a58ba40ed915a6584f582a4aaab5fbc3488604051808381526020018281526020019250505060405180910390a3509392505050565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a7230582010a5bc7ce74655ca4ccf9aa42b3d8c7fb6c739ddfbe58ab5ec0342818a7fdd420029",
+  "sourceMap": "93:1307:0:-;;;321:147;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;372:6;364:5;;:14;;;;;;;;;;;;;;;;;;395:5;;;;;;;;;;;:9;;;:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;388:4;;:18;;;;;;;;;;;;;;;;;;423:5;;;;;;;;;;;:9;;;:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;416:4;;:18;;;;;;;;;;;;;;;;;;450:5;;;;;;;;;;;:9;;;:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;444:3;;:17;;;;;;;;;;;;;;;;;;321:147;93:1307;;;;;;",
+  "deployedSourceMap": "93:1307:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;142:17;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;117:19;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;474:924;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;165:17;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;188:16;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;142:17;;;;;;;;;;;;;:::o;117:19::-;;;;;;;;;;;;;:::o;474:924::-;570:13;830:18;601:4;;;;;;;;;;;595:19;;;621:9;595:38;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;673:4;;;;;;;;;;;:12;;;686:5;;;;;;;;;;;693:9;673:30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;754:5;;;;;;;;;;;:10;;;765:5;;;;;;;;;;;:9;;;775;765:20;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;754:32;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;851:4;;;;;;;;;;;:14;;;866:4;851:20;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;830:41;;881:4;;;;;;;;;;;:12;;;894:5;;;;;;;;;;;901:10;881:31;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;970:5;;;;;;;;;;;:10;;;:12;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;962:20;;1037:5;;;;;;;;;;;:10;;;1048:5;1055:10;1037:29;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1111:5;;;;;;;;;;;:10;;;1122:5;1129:9;1111:28;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1187:3;;;;;;;;;;;:12;;;1200:8;1210:9;1187:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1264:5;;;;;;;;;;;:10;;;1275:5;1282:8;1264:27;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1360:8;1342:49;;1350:8;1342:49;;;1370:9;1381;1342:49;;;;;;;;;;;;;;;;;;;;;;;;474:924;;;;;;:::o;165:17::-;;;;;;;;;;;;;:::o;188:16::-;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity 0.4.18;\n\nimport \"./IMaker.sol\";\nimport \"./ERC20.sol\";\nimport \"./IWETH.sol\";\n\ncontract DaiMaker {\n    IMaker public maker;\n    ERC20 public weth;\n    ERC20 public peth;\n    ERC20 public dai;\n\n    event MakeDai(address indexed daiOwner, address indexed cdpOwner, uint256 ethAmount, uint256 daiAmount);\n\n    function DaiMaker(IMaker _maker) {\n        maker = _maker;\n        weth = maker.gem();\n        peth = maker.skr();\n        dai = maker.sai();\n    }\n\n    function makeDai(uint256 daiAmount, address cdpOwner, address daiOwner) payable public returns (bytes32 cdpId) {\n        IWETH(weth).deposit.value(msg.value)();     // wrap eth in weth token\n        weth.approve(maker, msg.value);             // allow maker to pull weth\n\n        maker.join(maker.ask(msg.value));           // convert weth to peth\n        uint256 pethAmount = peth.balanceOf(this);\n        peth.approve(maker, pethAmount);            // allow maker to pull peth\n\n        cdpId = maker.open();                       // create cdp in maker\n        maker.lock(cdpId, pethAmount);              // lock peth into cdp\n        maker.draw(cdpId, daiAmount);               // create dai from cdp\n\n        dai.transfer(daiOwner, daiAmount);          // transfer dai to owner\n        maker.give(cdpId, cdpOwner);                // transfer cdp to owner\n\n        MakeDai(daiOwner, cdpOwner, msg.value, daiAmount);\n    }\n}\n",
+  "sourcePath": "/Users/jorge/provident/dai.how/contracts/DaiMaker.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/Users/jorge/provident/dai.how/contracts/DaiMaker.sol",
+      "exportedSymbols": {
+        "DaiMaker": [
+          147
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".18"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "0:23:0"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 288,
+          "absolutePath": "/Users/jorge/provident/dai.how/contracts/IMaker.sol",
+          "file": "./IMaker.sol",
+          "scope": 148,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 2,
+        "name": "ImportDirective",
+        "src": "25:22:0"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 217,
+          "absolutePath": "/Users/jorge/provident/dai.how/contracts/ERC20.sol",
+          "file": "./ERC20.sol",
+          "scope": 148,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 3,
+        "name": "ImportDirective",
+        "src": "48:21:0"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 299,
+          "absolutePath": "/Users/jorge/provident/dai.how/contracts/IWETH.sol",
+          "file": "./IWETH.sol",
+          "scope": 148,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 4,
+        "name": "ImportDirective",
+        "src": "70:21:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            147
+          ],
+          "name": "DaiMaker",
+          "scope": 148
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "maker",
+              "scope": 147,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "contract IMaker",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "IMaker",
+                  "referencedDeclaration": 287,
+                  "type": "contract IMaker"
+                },
+                "id": 5,
+                "name": "UserDefinedTypeName",
+                "src": "117:6:0"
+              }
+            ],
+            "id": 6,
+            "name": "VariableDeclaration",
+            "src": "117:19:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "weth",
+              "scope": 147,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "contract ERC20",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "ERC20",
+                  "referencedDeclaration": 216,
+                  "type": "contract ERC20"
+                },
+                "id": 7,
+                "name": "UserDefinedTypeName",
+                "src": "142:5:0"
+              }
+            ],
+            "id": 8,
+            "name": "VariableDeclaration",
+            "src": "142:17:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "peth",
+              "scope": 147,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "contract ERC20",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "ERC20",
+                  "referencedDeclaration": 216,
+                  "type": "contract ERC20"
+                },
+                "id": 9,
+                "name": "UserDefinedTypeName",
+                "src": "165:5:0"
+              }
+            ],
+            "id": 10,
+            "name": "VariableDeclaration",
+            "src": "165:17:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "dai",
+              "scope": 147,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "contract ERC20",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "ERC20",
+                  "referencedDeclaration": 216,
+                  "type": "contract ERC20"
+                },
+                "id": 11,
+                "name": "UserDefinedTypeName",
+                "src": "188:5:0"
+              }
+            ],
+            "id": 12,
+            "name": "VariableDeclaration",
+            "src": "188:16:0"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "MakeDai"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "daiOwner",
+                      "scope": 22,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 13,
+                        "name": "ElementaryTypeName",
+                        "src": "225:7:0"
+                      }
+                    ],
+                    "id": 14,
+                    "name": "VariableDeclaration",
+                    "src": "225:24:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "cdpOwner",
+                      "scope": 22,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 15,
+                        "name": "ElementaryTypeName",
+                        "src": "251:7:0"
+                      }
+                    ],
+                    "id": 16,
+                    "name": "VariableDeclaration",
+                    "src": "251:24:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "ethAmount",
+                      "scope": 22,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 17,
+                        "name": "ElementaryTypeName",
+                        "src": "277:7:0"
+                      }
+                    ],
+                    "id": 18,
+                    "name": "VariableDeclaration",
+                    "src": "277:17:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "daiAmount",
+                      "scope": 22,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 19,
+                        "name": "ElementaryTypeName",
+                        "src": "296:7:0"
+                      }
+                    ],
+                    "id": 20,
+                    "name": "VariableDeclaration",
+                    "src": "296:17:0"
+                  }
+                ],
+                "id": 21,
+                "name": "ParameterList",
+                "src": "224:90:0"
+              }
+            ],
+            "id": 22,
+            "name": "EventDefinition",
+            "src": "211:104:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "DaiMaker",
+              "payable": false,
+              "scope": 147,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_maker",
+                      "scope": 50,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IMaker",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IMaker",
+                          "referencedDeclaration": 287,
+                          "type": "contract IMaker"
+                        },
+                        "id": 23,
+                        "name": "UserDefinedTypeName",
+                        "src": "339:6:0"
+                      }
+                    ],
+                    "id": 24,
+                    "name": "VariableDeclaration",
+                    "src": "339:13:0"
+                  }
+                ],
+                "id": 25,
+                "name": "ParameterList",
+                "src": "338:15:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26,
+                "name": "ParameterList",
+                "src": "354:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "contract IMaker"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6,
+                              "type": "contract IMaker",
+                              "value": "maker"
+                            },
+                            "id": 27,
+                            "name": "Identifier",
+                            "src": "364:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 24,
+                              "type": "contract IMaker",
+                              "value": "_maker"
+                            },
+                            "id": 28,
+                            "name": "Identifier",
+                            "src": "372:6:0"
+                          }
+                        ],
+                        "id": 29,
+                        "name": "Assignment",
+                        "src": "364:14:0"
+                      }
+                    ],
+                    "id": 30,
+                    "name": "ExpressionStatement",
+                    "src": "364:14:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "contract ERC20"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 8,
+                              "type": "contract ERC20",
+                              "value": "weth"
+                            },
+                            "id": 31,
+                            "name": "Identifier",
+                            "src": "388:4:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "contract ERC20",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "gem",
+                                  "referencedDeclaration": 234,
+                                  "type": "function () view external returns (contract ERC20)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 6,
+                                      "type": "contract IMaker",
+                                      "value": "maker"
+                                    },
+                                    "id": 32,
+                                    "name": "Identifier",
+                                    "src": "395:5:0"
+                                  }
+                                ],
+                                "id": 33,
+                                "name": "MemberAccess",
+                                "src": "395:9:0"
+                              }
+                            ],
+                            "id": 34,
+                            "name": "FunctionCall",
+                            "src": "395:11:0"
+                          }
+                        ],
+                        "id": 35,
+                        "name": "Assignment",
+                        "src": "388:18:0"
+                      }
+                    ],
+                    "id": 36,
+                    "name": "ExpressionStatement",
+                    "src": "388:18:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "contract ERC20"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 10,
+                              "type": "contract ERC20",
+                              "value": "peth"
+                            },
+                            "id": 37,
+                            "name": "Identifier",
+                            "src": "416:4:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "contract ERC20",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "skr",
+                                  "referencedDeclaration": 229,
+                                  "type": "function () view external returns (contract ERC20)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 6,
+                                      "type": "contract IMaker",
+                                      "value": "maker"
+                                    },
+                                    "id": 38,
+                                    "name": "Identifier",
+                                    "src": "423:5:0"
+                                  }
+                                ],
+                                "id": 39,
+                                "name": "MemberAccess",
+                                "src": "423:9:0"
+                              }
+                            ],
+                            "id": 40,
+                            "name": "FunctionCall",
+                            "src": "423:11:0"
+                          }
+                        ],
+                        "id": 41,
+                        "name": "Assignment",
+                        "src": "416:18:0"
+                      }
+                    ],
+                    "id": 42,
+                    "name": "ExpressionStatement",
+                    "src": "416:18:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "contract ERC20"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 12,
+                              "type": "contract ERC20",
+                              "value": "dai"
+                            },
+                            "id": 43,
+                            "name": "Identifier",
+                            "src": "444:3:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "contract ERC20",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "sai",
+                                  "referencedDeclaration": 224,
+                                  "type": "function () view external returns (contract ERC20)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 6,
+                                      "type": "contract IMaker",
+                                      "value": "maker"
+                                    },
+                                    "id": 44,
+                                    "name": "Identifier",
+                                    "src": "450:5:0"
+                                  }
+                                ],
+                                "id": 45,
+                                "name": "MemberAccess",
+                                "src": "450:9:0"
+                              }
+                            ],
+                            "id": 46,
+                            "name": "FunctionCall",
+                            "src": "450:11:0"
+                          }
+                        ],
+                        "id": 47,
+                        "name": "Assignment",
+                        "src": "444:17:0"
+                      }
+                    ],
+                    "id": 48,
+                    "name": "ExpressionStatement",
+                    "src": "444:17:0"
+                  }
+                ],
+                "id": 49,
+                "name": "Block",
+                "src": "354:114:0"
+              }
+            ],
+            "id": 50,
+            "name": "FunctionDefinition",
+            "src": "321:147:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "makeDai",
+              "payable": true,
+              "scope": 147,
+              "stateMutability": "payable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "daiAmount",
+                      "scope": 146,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 51,
+                        "name": "ElementaryTypeName",
+                        "src": "491:7:0"
+                      }
+                    ],
+                    "id": 52,
+                    "name": "VariableDeclaration",
+                    "src": "491:17:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "cdpOwner",
+                      "scope": 146,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 53,
+                        "name": "ElementaryTypeName",
+                        "src": "510:7:0"
+                      }
+                    ],
+                    "id": 54,
+                    "name": "VariableDeclaration",
+                    "src": "510:16:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "daiOwner",
+                      "scope": 146,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 55,
+                        "name": "ElementaryTypeName",
+                        "src": "528:7:0"
+                      }
+                    ],
+                    "id": 56,
+                    "name": "VariableDeclaration",
+                    "src": "528:16:0"
+                  }
+                ],
+                "id": 57,
+                "name": "ParameterList",
+                "src": "490:55:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "cdpId",
+                      "scope": 146,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 58,
+                        "name": "ElementaryTypeName",
+                        "src": "570:7:0"
+                      }
+                    ],
+                    "id": 59,
+                    "name": "VariableDeclaration",
+                    "src": "570:13:0"
+                  }
+                ],
+                "id": 60,
+                "name": "ParameterList",
+                "src": "569:15:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            null
+                          ],
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "function () payable external",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "value",
+                                  "referencedDeclaration": null,
+                                  "type": "function (uint256) returns (function () payable external)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "deposit",
+                                      "referencedDeclaration": 292,
+                                      "type": "function () payable external"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": false,
+                                          "isStructConstructorCall": false,
+                                          "lValueRequested": false,
+                                          "names": [
+                                            null
+                                          ],
+                                          "type": "contract IWETH",
+                                          "type_conversion": true
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": [
+                                                {
+                                                  "typeIdentifier": "t_contract$_ERC20_$216",
+                                                  "typeString": "contract ERC20"
+                                                }
+                                              ],
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 298,
+                                              "type": "type(contract IWETH)",
+                                              "value": "IWETH"
+                                            },
+                                            "id": 61,
+                                            "name": "Identifier",
+                                            "src": "595:5:0"
+                                          },
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 8,
+                                              "type": "contract ERC20",
+                                              "value": "weth"
+                                            },
+                                            "id": 62,
+                                            "name": "Identifier",
+                                            "src": "601:4:0"
+                                          }
+                                        ],
+                                        "id": 63,
+                                        "name": "FunctionCall",
+                                        "src": "595:11:0"
+                                      }
+                                    ],
+                                    "id": 64,
+                                    "name": "MemberAccess",
+                                    "src": "595:19:0"
+                                  }
+                                ],
+                                "id": 65,
+                                "name": "MemberAccess",
+                                "src": "595:25:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "value",
+                                  "referencedDeclaration": null,
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 310,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 66,
+                                    "name": "Identifier",
+                                    "src": "621:3:0"
+                                  }
+                                ],
+                                "id": 67,
+                                "name": "MemberAccess",
+                                "src": "621:9:0"
+                              }
+                            ],
+                            "id": 68,
+                            "name": "FunctionCall",
+                            "src": "595:36:0"
+                          }
+                        ],
+                        "id": 69,
+                        "name": "FunctionCall",
+                        "src": "595:38:0"
+                      }
+                    ],
+                    "id": 70,
+                    "name": "ExpressionStatement",
+                    "src": "595:38:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bool",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_contract$_IMaker_$287",
+                                  "typeString": "contract IMaker"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "approve",
+                              "referencedDeclaration": 207,
+                              "type": "function (address,uint256) external returns (bool)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 8,
+                                  "type": "contract ERC20",
+                                  "value": "weth"
+                                },
+                                "id": 71,
+                                "name": "Identifier",
+                                "src": "673:4:0"
+                              }
+                            ],
+                            "id": 73,
+                            "name": "MemberAccess",
+                            "src": "673:12:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6,
+                              "type": "contract IMaker",
+                              "value": "maker"
+                            },
+                            "id": 74,
+                            "name": "Identifier",
+                            "src": "686:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "value",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 310,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 75,
+                                "name": "Identifier",
+                                "src": "693:3:0"
+                              }
+                            ],
+                            "id": 76,
+                            "name": "MemberAccess",
+                            "src": "693:9:0"
+                          }
+                        ],
+                        "id": 77,
+                        "name": "FunctionCall",
+                        "src": "673:30:0"
+                      }
+                    ],
+                    "id": 78,
+                    "name": "ExpressionStatement",
+                    "src": "673:30:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "join",
+                              "referencedDeclaration": 258,
+                              "type": "function (uint256) external"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 6,
+                                  "type": "contract IMaker",
+                                  "value": "maker"
+                                },
+                                "id": 79,
+                                "name": "Identifier",
+                                "src": "754:5:0"
+                              }
+                            ],
+                            "id": 81,
+                            "name": "MemberAccess",
+                            "src": "754:10:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "uint256",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "ask",
+                                  "referencedDeclaration": 253,
+                                  "type": "function (uint256) view external returns (uint256)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 6,
+                                      "type": "contract IMaker",
+                                      "value": "maker"
+                                    },
+                                    "id": 82,
+                                    "name": "Identifier",
+                                    "src": "765:5:0"
+                                  }
+                                ],
+                                "id": 83,
+                                "name": "MemberAccess",
+                                "src": "765:9:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "value",
+                                  "referencedDeclaration": null,
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 310,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 84,
+                                    "name": "Identifier",
+                                    "src": "775:3:0"
+                                  }
+                                ],
+                                "id": 85,
+                                "name": "MemberAccess",
+                                "src": "775:9:0"
+                              }
+                            ],
+                            "id": 86,
+                            "name": "FunctionCall",
+                            "src": "765:20:0"
+                          }
+                        ],
+                        "id": 87,
+                        "name": "FunctionCall",
+                        "src": "754:32:0"
+                      }
+                    ],
+                    "id": 88,
+                    "name": "ExpressionStatement",
+                    "src": "754:32:0"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        90
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "pethAmount",
+                          "scope": 146,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint256",
+                              "type": "uint256"
+                            },
+                            "id": 89,
+                            "name": "ElementaryTypeName",
+                            "src": "830:7:0"
+                          }
+                        ],
+                        "id": 90,
+                        "name": "VariableDeclaration",
+                        "src": "830:18:0"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_contract$_DaiMaker_$147",
+                                  "typeString": "contract DaiMaker"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "balanceOf",
+                              "referencedDeclaration": 161,
+                              "type": "function (address) view external returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10,
+                                  "type": "contract ERC20",
+                                  "value": "peth"
+                                },
+                                "id": 91,
+                                "name": "Identifier",
+                                "src": "851:4:0"
+                              }
+                            ],
+                            "id": 92,
+                            "name": "MemberAccess",
+                            "src": "851:14:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 327,
+                              "type": "contract DaiMaker",
+                              "value": "this"
+                            },
+                            "id": 93,
+                            "name": "Identifier",
+                            "src": "866:4:0"
+                          }
+                        ],
+                        "id": 94,
+                        "name": "FunctionCall",
+                        "src": "851:20:0"
+                      }
+                    ],
+                    "id": 95,
+                    "name": "VariableDeclarationStatement",
+                    "src": "830:41:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bool",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_contract$_IMaker_$287",
+                                  "typeString": "contract IMaker"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "approve",
+                              "referencedDeclaration": 207,
+                              "type": "function (address,uint256) external returns (bool)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10,
+                                  "type": "contract ERC20",
+                                  "value": "peth"
+                                },
+                                "id": 96,
+                                "name": "Identifier",
+                                "src": "881:4:0"
+                              }
+                            ],
+                            "id": 98,
+                            "name": "MemberAccess",
+                            "src": "881:12:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6,
+                              "type": "contract IMaker",
+                              "value": "maker"
+                            },
+                            "id": 99,
+                            "name": "Identifier",
+                            "src": "894:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 90,
+                              "type": "uint256",
+                              "value": "pethAmount"
+                            },
+                            "id": 100,
+                            "name": "Identifier",
+                            "src": "901:10:0"
+                          }
+                        ],
+                        "id": 101,
+                        "name": "FunctionCall",
+                        "src": "881:31:0"
+                      }
+                    ],
+                    "id": 102,
+                    "name": "ExpressionStatement",
+                    "src": "881:31:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bytes32"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 59,
+                              "type": "bytes32",
+                              "value": "cdpId"
+                            },
+                            "id": 103,
+                            "name": "Identifier",
+                            "src": "962:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "bytes32",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "open",
+                                  "referencedDeclaration": 239,
+                                  "type": "function () external returns (bytes32)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 6,
+                                      "type": "contract IMaker",
+                                      "value": "maker"
+                                    },
+                                    "id": 104,
+                                    "name": "Identifier",
+                                    "src": "970:5:0"
+                                  }
+                                ],
+                                "id": 105,
+                                "name": "MemberAccess",
+                                "src": "970:10:0"
+                              }
+                            ],
+                            "id": 106,
+                            "name": "FunctionCall",
+                            "src": "970:12:0"
+                          }
+                        ],
+                        "id": 107,
+                        "name": "Assignment",
+                        "src": "962:20:0"
+                      }
+                    ],
+                    "id": 108,
+                    "name": "ExpressionStatement",
+                    "src": "962:20:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "lock",
+                              "referencedDeclaration": 265,
+                              "type": "function (bytes32,uint256) external"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 6,
+                                  "type": "contract IMaker",
+                                  "value": "maker"
+                                },
+                                "id": 109,
+                                "name": "Identifier",
+                                "src": "1037:5:0"
+                              }
+                            ],
+                            "id": 111,
+                            "name": "MemberAccess",
+                            "src": "1037:10:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 59,
+                              "type": "bytes32",
+                              "value": "cdpId"
+                            },
+                            "id": 112,
+                            "name": "Identifier",
+                            "src": "1048:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 90,
+                              "type": "uint256",
+                              "value": "pethAmount"
+                            },
+                            "id": 113,
+                            "name": "Identifier",
+                            "src": "1055:10:0"
+                          }
+                        ],
+                        "id": 114,
+                        "name": "FunctionCall",
+                        "src": "1037:29:0"
+                      }
+                    ],
+                    "id": 115,
+                    "name": "ExpressionStatement",
+                    "src": "1037:29:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "draw",
+                              "referencedDeclaration": 279,
+                              "type": "function (bytes32,uint256) external"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 6,
+                                  "type": "contract IMaker",
+                                  "value": "maker"
+                                },
+                                "id": 116,
+                                "name": "Identifier",
+                                "src": "1111:5:0"
+                              }
+                            ],
+                            "id": 118,
+                            "name": "MemberAccess",
+                            "src": "1111:10:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 59,
+                              "type": "bytes32",
+                              "value": "cdpId"
+                            },
+                            "id": 119,
+                            "name": "Identifier",
+                            "src": "1122:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 52,
+                              "type": "uint256",
+                              "value": "daiAmount"
+                            },
+                            "id": 120,
+                            "name": "Identifier",
+                            "src": "1129:9:0"
+                          }
+                        ],
+                        "id": 121,
+                        "name": "FunctionCall",
+                        "src": "1111:28:0"
+                      }
+                    ],
+                    "id": 122,
+                    "name": "ExpressionStatement",
+                    "src": "1111:28:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bool",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "transfer",
+                              "referencedDeclaration": 170,
+                              "type": "function (address,uint256) external returns (bool)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 12,
+                                  "type": "contract ERC20",
+                                  "value": "dai"
+                                },
+                                "id": 123,
+                                "name": "Identifier",
+                                "src": "1187:3:0"
+                              }
+                            ],
+                            "id": 125,
+                            "name": "MemberAccess",
+                            "src": "1187:12:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 56,
+                              "type": "address",
+                              "value": "daiOwner"
+                            },
+                            "id": 126,
+                            "name": "Identifier",
+                            "src": "1200:8:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 52,
+                              "type": "uint256",
+                              "value": "daiAmount"
+                            },
+                            "id": 127,
+                            "name": "Identifier",
+                            "src": "1210:9:0"
+                          }
+                        ],
+                        "id": 128,
+                        "name": "FunctionCall",
+                        "src": "1187:33:0"
+                      }
+                    ],
+                    "id": 129,
+                    "name": "ExpressionStatement",
+                    "src": "1187:33:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                },
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "give",
+                              "referencedDeclaration": 246,
+                              "type": "function (bytes32,address) external"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 6,
+                                  "type": "contract IMaker",
+                                  "value": "maker"
+                                },
+                                "id": 130,
+                                "name": "Identifier",
+                                "src": "1264:5:0"
+                              }
+                            ],
+                            "id": 132,
+                            "name": "MemberAccess",
+                            "src": "1264:10:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 59,
+                              "type": "bytes32",
+                              "value": "cdpId"
+                            },
+                            "id": 133,
+                            "name": "Identifier",
+                            "src": "1275:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 54,
+                              "type": "address",
+                              "value": "cdpOwner"
+                            },
+                            "id": 134,
+                            "name": "Identifier",
+                            "src": "1282:8:0"
+                          }
+                        ],
+                        "id": 135,
+                        "name": "FunctionCall",
+                        "src": "1264:27:0"
+                      }
+                    ],
+                    "id": 136,
+                    "name": "ExpressionStatement",
+                    "src": "1264:27:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 22,
+                              "type": "function (address,address,uint256,uint256)",
+                              "value": "MakeDai"
+                            },
+                            "id": 137,
+                            "name": "Identifier",
+                            "src": "1342:7:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 56,
+                              "type": "address",
+                              "value": "daiOwner"
+                            },
+                            "id": 138,
+                            "name": "Identifier",
+                            "src": "1350:8:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 54,
+                              "type": "address",
+                              "value": "cdpOwner"
+                            },
+                            "id": 139,
+                            "name": "Identifier",
+                            "src": "1360:8:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "value",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 310,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 140,
+                                "name": "Identifier",
+                                "src": "1370:3:0"
+                              }
+                            ],
+                            "id": 141,
+                            "name": "MemberAccess",
+                            "src": "1370:9:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 52,
+                              "type": "uint256",
+                              "value": "daiAmount"
+                            },
+                            "id": 142,
+                            "name": "Identifier",
+                            "src": "1381:9:0"
+                          }
+                        ],
+                        "id": 143,
+                        "name": "FunctionCall",
+                        "src": "1342:49:0"
+                      }
+                    ],
+                    "id": 144,
+                    "name": "ExpressionStatement",
+                    "src": "1342:49:0"
+                  }
+                ],
+                "id": 145,
+                "name": "Block",
+                "src": "585:813:0"
+              }
+            ],
+            "id": 146,
+            "name": "FunctionDefinition",
+            "src": "474:924:0"
+          }
+        ],
+        "id": 147,
+        "name": "ContractDefinition",
+        "src": "93:1307:0"
+      }
+    ],
+    "id": 148,
+    "name": "SourceUnit",
+    "src": "0:1401:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2018-02-18T01:44:23.036Z"
+}

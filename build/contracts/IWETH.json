@@ -1,0 +1,201 @@
+{
+  "contractName": "IWETH",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "wad",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "deposit",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity 0.4.18;\n\ninterface IWETH {\n    function deposit() public payable;\n    function withdraw(uint wad) public;\n}\n",
+  "sourcePath": "/Users/jorge/provident/dai.how/contracts/IWETH.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/Users/jorge/provident/dai.how/contracts/IWETH.sol",
+      "exportedSymbols": {
+        "IWETH": [
+          298
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".18"
+          ]
+        },
+        "id": 289,
+        "name": "PragmaDirective",
+        "src": "0:23:3"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            298
+          ],
+          "name": "IWETH",
+          "scope": 299
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "constant": false,
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "deposit",
+              "payable": true,
+              "scope": 298,
+              "stateMutability": "payable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 290,
+                "name": "ParameterList",
+                "src": "63:2:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 291,
+                "name": "ParameterList",
+                "src": "80:0:3"
+              }
+            ],
+            "id": 292,
+            "name": "FunctionDefinition",
+            "src": "47:34:3"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "constant": false,
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "withdraw",
+              "payable": false,
+              "scope": 298,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "wad",
+                      "scope": 297,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 293,
+                        "name": "ElementaryTypeName",
+                        "src": "104:4:3"
+                      }
+                    ],
+                    "id": 294,
+                    "name": "VariableDeclaration",
+                    "src": "104:8:3"
+                  }
+                ],
+                "id": 295,
+                "name": "ParameterList",
+                "src": "103:10:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 296,
+                "name": "ParameterList",
+                "src": "120:0:3"
+              }
+            ],
+            "id": 297,
+            "name": "FunctionDefinition",
+            "src": "86:35:3"
+          }
+        ],
+        "id": 298,
+        "name": "ContractDefinition",
+        "src": "25:98:3"
+      }
+    ],
+    "id": 299,
+    "name": "SourceUnit",
+    "src": "0:124:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2018-02-18T01:44:23.037Z"
+}

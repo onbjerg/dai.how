@@ -1,0 +1,26 @@
+{
+  "name": "dai.how",
+  "version": "1.0.0",
+  "description": "Make DAI",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onbjerg/dai.how.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/onbjerg/dai.how/issues"
+  },
+  "homepage": "https://github.com/onbjerg/dai.how#readme",
+  "devDependencies": {
+    "truffle": "^4.0.5",
+    "truffle-hdwallet-provider": "0.0.3"
+  }
+}
