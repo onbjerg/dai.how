@@ -22,6 +22,12 @@ module.exports = {
       provider: kovanProvider,
       gas: 6.9e6,
     },
+    rpc: {
+      network_id: 15,
+      host: 'localhost',
+      port: 8545,
+      gas: 6.9e6,
+    },
   },
   build: {},
 }

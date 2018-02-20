@@ -1,237 +1,57 @@
 {
-  "contractName": "IMaker",
+  "contractName": "DSMath",
   "abi": [
     {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "wad",
-          "type": "uint256"
-        }
-      ],
-      "name": "join",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "skr",
-      "outputs": [
-        {
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "cup",
-          "type": "bytes32"
-        },
-        {
-          "name": "wad",
-          "type": "uint256"
-        }
-      ],
-      "name": "draw",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
       "constant": true,
       "inputs": [
         {
-          "name": "wad",
-          "type": "uint256"
-        }
-      ],
-      "name": "bid",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "gap",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "gem",
-      "outputs": [
-        {
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "per",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "fit_",
+          "name": "x",
           "type": "uint256"
         },
         {
-          "name": "jam",
+          "name": "y",
           "type": "uint256"
         }
       ],
-      "name": "cage",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "sai",
+      "name": "rdiv",
       "outputs": [
         {
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "cup",
-          "type": "bytes32"
-        },
-        {
-          "name": "wad",
+          "name": "z",
           "type": "uint256"
         }
       ],
-      "name": "free",
-      "outputs": [],
       "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "cup",
-          "type": "bytes32"
-        },
-        {
-          "name": "wad",
-          "type": "uint256"
-        }
-      ],
-      "name": "lock",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "cup",
-          "type": "bytes32"
-        },
-        {
-          "name": "guy",
-          "type": "address"
-        }
-      ],
-      "name": "give",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
+      "stateMutability": "pure",
       "type": "function"
     },
     {
       "constant": true,
       "inputs": [
         {
-          "name": "wad",
+          "name": "x",
+          "type": "uint256"
+        },
+        {
+          "name": "y",
           "type": "uint256"
         }
       ],
-      "name": "ask",
+      "name": "wdiv",
       "outputs": [
         {
-          "name": "",
+          "name": "z",
           "type": "uint256"
         }
       ],
       "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [],
-      "name": "open",
-      "outputs": [
-        {
-          "name": "cup",
-          "type": "bytes32"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "nonpayable",
+      "stateMutability": "pure",
       "type": "function"
     }
   ],
-  "bytecode": "0x",
-  "deployedBytecode": "0x",
-  "sourceMap": "",
-  "deployedSourceMap": "",
+  "bytecode": "0x6060604052341561000f57600080fd5b6101c58061001e6000396000f30060606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630e2286d3146100515780635fde731c14610091575b600080fd5b341561005c57600080fd5b61007b60048080359060200190919080359060200190919050506100d1565b6040518082815260200191505060405180910390f35b341561009c57600080fd5b6100bb6004808035906020019091908035906020019091905050610111565b6040518082815260200191505060405180910390f35b6000816100ff6100ed856b033b2e3c9fd0803ce800000061014d565b6002858115156100f957fe5b0461017d565b81151561010857fe5b04905092915050565b60008161013b61012985670de0b6b3a764000061014d565b60028581151561013557fe5b0461017d565b81151561014457fe5b04905092915050565b60008082148061016c5750828283850292508281151561016957fe5b04145b151561017757600080fd5b92915050565b6000828284019150811015151561019357600080fd5b929150505600a165627a7a723058201d82f9bc9985d48ec112a4f0731289b03313ffc7dc1eb9d8b229b92adb06a1bf0029",
+  "deployedBytecode": "0x60606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630e2286d3146100515780635fde731c14610091575b600080fd5b341561005c57600080fd5b61007b60048080359060200190919080359060200190919050506100d1565b6040518082815260200191505060405180910390f35b341561009c57600080fd5b6100bb6004808035906020019091908035906020019091905050610111565b6040518082815260200191505060405180910390f35b6000816100ff6100ed856b033b2e3c9fd0803ce800000061014d565b6002858115156100f957fe5b0461017d565b81151561010857fe5b04905092915050565b60008161013b61012985670de0b6b3a764000061014d565b60028581151561013557fe5b0461017d565b81151561014457fe5b04905092915050565b60008082148061016c5750828283850292508281151561016957fe5b04145b151561017757600080fd5b92915050565b6000828284019150811015151561019357600080fd5b929150505600a165627a7a723058201d82f9bc9985d48ec112a4f0731289b03313ffc7dc1eb9d8b229b92adb06a1bf0029",
+  "sourceMap": "1494:2109:5:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "1494:2109:5:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2674:107;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2562;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2674;2725:6;2773:1;2747:23;2751:11;2755:1;2315:8;2751:3;:11::i;:::-;2768:1;2764;:5;;;;;;;;2747:3;:23::i;:::-;:27;;;;;;;;2743:31;;2674:107;;;;:::o;2562:::-;2613:6;2661:1;2635:23;2639:11;2643:1;2281:8;2639:3;:11::i;:::-;2656:1;2652;:5;;;;;;;;2635:3;:23::i;:::-;:27;;;;;;;;2631:31;;2562:107;;;;:::o;1730:116::-;1782:6;1813:1;1808;:6;:30;;;;1837:1;1832;1827;1823;:5;1819:9;;;1818:15;;;;;;;;:20;1808:30;1800:39;;;;;;;;1730:116;;;;:::o;1516:102::-;1568:6;1609:1;1603;1599;:5;1595:9;;;1594:16;;1586:25;;;;;;;;1516:102;;;;:::o",
   "source": "/*\n\nRead code from https://github.com/onbjerg/dai.how\n\n*/\ninterface IMaker {\n    function sai() public view returns (ERC20);\n    function skr() public view returns (ERC20);\n    function gem() public view returns (ERC20);\n\n    function open() public returns (bytes32 cup);\n    function give(bytes32 cup, address guy) public;\n\n    function gap() public view returns (uint);\n    function per() public view returns (uint);\n\n    function ask(uint wad) public view returns (uint);\n    function bid(uint wad) public view returns (uint);\n\n    function join(uint wad) public;\n    function lock(bytes32 cup, uint wad) public;\n    function free(bytes32 cup, uint wad) public;\n    function draw(bytes32 cup, uint wad) public;\n    function cage(uint fit_, uint jam) public;\n}\n\ninterface ERC20 {\n    function totalSupply() public view returns (uint256);\n    function balanceOf(address who) public view returns (uint256);\n    function transfer(address to, uint256 value) public returns (bool);\n    event Transfer(address indexed from, address indexed to, uint256 value);\n    function allowance(address owner, address spender) public view returns (uint256);\n    function transferFrom(address from, address to, uint256 value) public returns (bool);\n    function approve(address spender, uint256 value) public returns (bool);\n    event Approval(address indexed owner, address indexed spender, uint256 value);\n}\n\ninterface IWETH {\n    function deposit() public payable;\n    function withdraw(uint wad) public;\n}\n\ncontract DSMath {\n    function add(uint x, uint y) internal pure returns (uint z) {\n        require((z = x + y) >= x);\n    }\n    function sub(uint x, uint y) internal pure returns (uint z) {\n        require((z = x - y) <= x);\n    }\n    function mul(uint x, uint y) internal pure returns (uint z) {\n        require(y == 0 || (z = x * y) / y == x);\n    }\n\n    function min(uint x, uint y) internal pure returns (uint z) {\n        return x <= y ? x : y;\n    }\n    function max(uint x, uint y) internal pure returns (uint z) {\n        return x >= y ? x : y;\n    }\n    function imin(int x, int y) internal pure returns (int z) {\n        return x <= y ? x : y;\n    }\n    function imax(int x, int y) internal pure returns (int z) {\n        return x >= y ? x : y;\n    }\n\n    uint constant WAD = 10 ** 18;\n    uint constant RAY = 10 ** 27;\n\n    function wmul(uint x, uint y) internal pure returns (uint z) {\n        z = add(mul(x, y), WAD / 2) / WAD;\n    }\n    function rmul(uint x, uint y) internal pure returns (uint z) {\n        z = add(mul(x, y), RAY / 2) / RAY;\n    }\n    function wdiv(uint x, uint y) public pure returns (uint z) {\n        z = add(mul(x, WAD), y / 2) / y;\n    }\n    function rdiv(uint x, uint y) public pure returns (uint z) {\n        z = add(mul(x, RAY), y / 2) / y;\n    }\n\n    // This famous algorithm is called \"exponentiation by squaring\"\n    // and calculates x^n with x as fixed-point and n as regular unsigned.\n    //\n    // It's O(log n), instead of O(n) for naive repeated multiplication.\n    //\n    // These facts are why it works:\n    //\n    //  If n is even, then x^n = (x^2)^(n/2).\n    //  If n is odd,  then x^n = x * x^(n-1),\n    //   and applying the equation for even x gives\n    //    x^n = x * (x^2)^((n-1) / 2).\n    //\n    //  Also, EVM division is flooring and\n    //    floor[(n-1) / 2] = floor[n / 2].\n    //\n    function rpow(uint x, uint n) internal pure returns (uint z) {\n        z = n % 2 != 0 ? x : RAY;\n\n        for (n /= 2; n != 0; n /= 2) {\n            x = rmul(x, x);\n\n            if (n % 2 != 0) {\n                z = rmul(z, x);\n            }\n        }\n    }\n}\n\ncontract DaiMaker is DSMath {\n    IMaker public maker;\n    ERC20 public weth;\n    ERC20 public peth;\n    ERC20 public dai;\n\n    event MakeDai(address indexed daiOwner, address indexed cdpOwner, uint256 ethAmount, uint256 daiAmount, uint256 pethAmount);\n\n    function DaiMaker(IMaker _maker) {\n        maker = _maker;\n        weth = maker.gem();\n        peth = maker.skr();\n        dai = maker.sai();\n    }\n\n    function makeDai(uint256 daiAmount, address cdpOwner, address daiOwner) payable public returns (bytes32 cdpId) {\n        IWETH(weth).deposit.value(msg.value)();      // wrap eth in weth token\n        weth.approve(maker, msg.value);              // allow maker to pull weth\n\n        // calculate how much peth we need to enter with\n        uint256 inverseAsk = rdiv(msg.value, wmul(maker.gap(), maker.per())) - 1;\n\n        maker.join(inverseAsk);                      // convert weth to peth\n        uint256 pethAmount = peth.balanceOf(this);\n\n        peth.approve(maker, pethAmount);             // allow maker to pull peth\n\n        cdpId = maker.open();                        // create cdp in maker\n        maker.lock(cdpId, pethAmount);               // lock peth into cdp\n        maker.draw(cdpId, daiAmount);                // create dai from cdp\n\n        dai.transfer(daiOwner, daiAmount);           // transfer dai to owner\n        maker.give(cdpId, cdpOwner);                 // transfer cdp to owner\n\n        MakeDai(daiOwner, cdpOwner, msg.value, daiAmount, pethAmount);\n    }\n}\n",
   "sourcePath": "/Users/jorge/provident/dai.how/contracts/v-DaiMaker.sol",
   "ast": {
@@ -8994,5 +8814,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-20T00:43:12.012Z"
+  "updatedAt": "2018-02-20T00:43:12.018Z"
 }

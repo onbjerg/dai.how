@@ -10,7 +10,11 @@ interface IMaker {
     function open() public returns (bytes32 cup);
     function give(bytes32 cup, address guy) public;
 
+    function gap() public view returns (uint);
+    function per() public view returns (uint);
+
     function ask(uint wad) public view returns (uint);
+    function bid(uint wad) public view returns (uint);
 
     function join(uint wad) public;
     function lock(bytes32 cup, uint wad) public;
