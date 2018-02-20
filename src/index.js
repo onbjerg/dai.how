@@ -1,4 +1,8 @@
 const { createStore } = require('redux')
+const contract = require('truffle-contract')
+const DaiMakerContract = require('../build/contracts/DaiMaker.json')
+
+const DaiMaker = contract(DaiMakerContract)
 
 // DOM
 const loadingScreen = document.getElementById('loading')
@@ -47,6 +51,10 @@ collateralInput.oninput = function (evt) {
 daiInput.oninput = function (evt) {
   store.dispatch({ type: 'SET_DAI', value: evt.target.value })
 }
+issueButton.onclick = function () {
+  issueDai()
+}
+
 function render (state) {
   const liquidationPrice = (state.dai * 1.5) / state.collateral
   const maxDaiIssuance = (state.collateral * state.etherPrice)
@@ -81,7 +89,18 @@ function render (state) {
 }
 
 // Send transaction
-function issueDai () {}
+function issueDai () {
+  const state = store.getState()
+
+  Promise.all(
+    web3.eth.getAccounts((accounts) => accounts[0]),
+    DaiMaker.deployed()
+  ).then(
+    ([instance, account]) => instance.makeDai(state.dai, account, account)
+  ).then(
+    (cdpId) => alert(`Your CDP was opened (ID ${cdpId}) and your Dai was transferred`)
+  )
+}
 
 // Hook it up
 store.subscribe(
@@ -92,8 +111,10 @@ store.subscribe(
 window.onload = function () {
   if (typeof web3 !== 'undefined') {
     console.log('Detected inpage provider')
+    DaiMaker.setProvider(web3.currentProvider)
     store.dispatch({ type: 'SET_STATE', value: 'inpage' })
   } else {
+    // TODO
     console.log('Ledger detected')
     store.dispatch({ type: 'SET_STATE', value: 'ledger' })
   }

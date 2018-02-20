@@ -29,6 +29,7 @@
   "dependencies": {
     "@ledgerhq/hw-app-eth": "^4.0.0",
     "@ledgerhq/hw-transport-u2f": "^4.0.0",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "truffle-contract": "^3.0.3"
   }
 }
