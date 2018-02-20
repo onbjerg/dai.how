@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <title>dai.how</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="loading">
+    <h1>Loading...</h1>
+  </div>
+  <div id="app">
+    <h1>Time to Dai</h1>
+    <input type="number" placeholder="Collateral" id="collateral" />
+    <label>Dai to issue (<b id="dai-amount">0</b>)</label>
+    <input min="1" step="1" type="range" id="dai" />
+    <h3 style="font-weight: normal" id="prices">
+      Liquidation price: <b id="liquidation">$?</b><br />
+      Current Ether price: <b id="ether-price">$500</b>
+    </h3>
+    <h3 style="display: none; color: red" id="collaterization-warning">
+      Your CDP would be under-collateralized so you can't open it
+    </h3>
+    <!-- <span>Show advanced</span> !-->
+    <input type="button" value="Issue Dai" id="issue" />
+  </div>
+  <script src="bundle.min.js"></script>
+</body>
+</html>
