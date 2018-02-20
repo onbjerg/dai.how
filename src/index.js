@@ -92,14 +92,12 @@ function render (state) {
 function issueDai () {
   const state = store.getState()
 
-  Promise.all(
-    web3.eth.getAccounts((accounts) => accounts[0]),
-    DaiMaker.deployed()
-  ).then(
-    ([instance, account]) => instance.makeDai(state.dai, account, account)
-  ).then(
-    (cdpId) => alert(`Your CDP was opened (ID ${cdpId}) and your Dai was transferred`)
-  )
+  Promise.all([
+    new Promise(r => web3.eth.getAccounts((err, accounts) => r(accounts[0]))),
+    DaiMaker.at(require('../index.js').mainnet)
+  ]).then(
+    ([account, instance]) => instance.makeDai(web3.toWei(state.dai), account, account, { from: account, value: web3.toWei(state.collateral) })
+  ).then(() => alert(`Your CDP was opened and your Dai was transferred`))
 }
 
 // Hook it up
