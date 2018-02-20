@@ -21,7 +21,7 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
     new CopyWebpackPlugin([
-      { from: 'public/**', to: 'dist/' }
+      { from: 'public/', to: '.' }
     ])
   ]
 }
