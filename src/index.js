@@ -66,6 +66,10 @@ function render (state) {
   } else {
     loadingScreen.style.display = 'none'
     appScreen.style.display = 'flex'
+
+    if (state.state !== 'inpage') {
+      issueButton.disabled = true
+    }
   }
 
   // Update UI
@@ -107,15 +111,22 @@ store.subscribe(
 
 // RPC provider detection
 window.onload = function () {
-  if (typeof web3 !== 'undefined') {
-    console.log('Detected inpage provider')
-    DaiMaker.setProvider(web3.currentProvider)
-    store.dispatch({ type: 'SET_STATE', value: 'inpage' })
-  } else {
-    // TODO
-    console.log('Ledger detected')
-    store.dispatch({ type: 'SET_STATE', value: 'ledger' })
-  }
+  fetch('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD')
+    .then((res) => res.json())
+    .then(({ USD }) => {
+      store.dispatch({ type: 'SET_ETHER_PRICE', value: USD })
+    })
+    .then(() => {
+      if (typeof web3 !== 'undefined') {
+        console.log('Detected inpage provider')
+        DaiMaker.setProvider(web3.currentProvider)
+        store.dispatch({ type: 'SET_STATE', value: 'inpage' })
+      } else {
+        store.dispatch({ type: 'SET_STATE', value: 'noprovider' })
+      }
+    })
+
+  // TODO: Ledger support
 }
 
 // Initial render
