@@ -26,6 +26,9 @@ function reducer (state = {
   state: 'loading'
 }, action) {
   switch (action.type) {
+    case 'SET_ETHER_PRICE':
+      state.etherPrice = action.value
+      break
     case 'SET_COLLATERAL':
       state.collateral = action.value
       break

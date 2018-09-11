@@ -9,7 +9,7 @@
   "scripts": {
     "build": "webpack",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "cp CNAME dist/CNAME && gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
