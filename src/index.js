@@ -91,6 +91,7 @@ function render (state) {
 
     if (state.state !== 'inpage') {
       issueButton.disabled = true
+      issueButton.value = 'No wallet detected'
     }
   }
 }
