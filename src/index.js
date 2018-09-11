@@ -62,19 +62,6 @@ function render (state) {
   const liquidationPrice = (state.dai * 1.5) / state.collateral
   const maxDaiIssuance = (state.collateral * state.etherPrice)
 
-  // States
-  if (state.state === 'loading') {
-    loadingScreen.style.display = 'flex'
-    appScreen.style.display = 'none'
-  } else {
-    loadingScreen.style.display = 'none'
-    appScreen.style.display = 'flex'
-
-    if (state.state !== 'inpage') {
-      issueButton.disabled = true
-    }
-  }
-
   // Update UI
   liquidationDisplay.innerHTML = state.collateral * 100
   daiDisplay.innerHTML = state.dai
@@ -92,6 +79,19 @@ function render (state) {
     warningDisplay.style.display = 'none'
     pricesDisplay.style.display = 'block'
     issueButton.disabled = false
+  }
+
+  // States
+  if (state.state === 'loading') {
+    loadingScreen.style.display = 'flex'
+    appScreen.style.display = 'none'
+  } else {
+    loadingScreen.style.display = 'none'
+    appScreen.style.display = 'flex'
+
+    if (state.state !== 'inpage') {
+      issueButton.disabled = true
+    }
   }
 }
 
