@@ -39,6 +39,22 @@ contract DaiMaker is DSMath {
         dai.transfer(daiOwner, daiAmount);           // transfer dai to owner
         maker.give(cdpId, cdpOwner);                 // transfer cdp to owner
 
+        // just in case transfer everything to the cdp owner
+        uint256 ethBalance = address(this).balance;
+        if (ethBalance > 0) {
+            cdpOwner.transfer(ethBalance);
+        }
+
+        uint256 wethBalance = weth.balanceOf(this);
+        if (wethBalance > 0) {
+            weth.transfer(cdpOwner, wethBalance);
+        }
+
+        uint256 pethBalance = peth.balanceOf(this);
+        if (wethBalance > 0) {
+            peth.transfer(cdpOwner, pethBalance);
+        }
+
         MakeDai(daiOwner, cdpOwner, msg.value, daiAmount, pethAmount);
     }
 }
